@@ -1,45 +1,69 @@
-**!! Atenção: Renomeie o seu repositório para (Tema)_(NomeDoProjeto). !!** 
+# AeroSimulator Evolved
 
-Temas:
- - Grafos1
- - Grafos2
- - PD
- - D&C
- - Greed
- - Final 
- 
- **!! *Não coloque os nomes dos alunos no título do repositório*. Exemplo de título correto: Grafos2_Labirinto-do-Minotauro !!**
- 
- (Apague essa seção)
-
-# NomedoProjeto
-
-**Número da Lista**: X<br>
-**Conteúdo da Disciplina**: XXXXXXXXXX<br>
+**Conteúdo da Disciplina**: Grafos 2<br>
 
 ## Alunos
+
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 19/0105267  |  Diógenes Dantas Lélis Júnior |
+| 20/0018167  |  Gabriel Mariano da Silva |
 
-## Sobre 
-Descreva os objetivos do seu projeto e como ele funciona. 
+## Sobre
+
+Em andamento.
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
 
-## Instalação 
-**Linguagem**: xxxxxx<br>
-**Framework**: (caso exista)<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
+Em andamento.
 
-## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
+## Instalação
 
-## Outros 
-Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
+**Linguagem**: *JavaScript*<br>
+**Framework**: *React*<br>
 
+## Como rodar o projeto?
 
+Primeiramente, clone o repositório em sua máquina:
 
+```
+git clone git@github.com:projeto-de-algoritmos/Grafos2_AeroSimulatorEvolved.git
+```
 
+Após isso, entre na pasta do projeto e então entre na pasta *aerosimulator*, na qual o projeto está localizado:
+
+```
+cd Grafos2_AeroSimulatorEvolved/aerosimulator/
+```
+
+Em seguida, instale todas as dependências do projeto com o [**NPM**](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) (ou [**Yarn**](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable), caso prefira):
+
+```
+npm install
+```
+
+Caso não possua o **NPM** ou o **Node.js** instalados em sua máquina, veja o [**tutorial**](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm#using-a-node-installer-to-install-nodejs-and-npm).
+
+Por fim, para rodar o projeto, basta executar o *script* de *start*:
+
+```
+npm run start
+```
+
+O projeto será automaticamente executado e estará disponível em uma porta de sua máquina (geralmente a porta [3000](<http://localhost:3000>)).
+
+## Uso
+
+Em andamento.
+
+### Instruções de uso
+
+Em andamento.
+
+## Apresentação
+
+Em andamento.
+
+## Outros
+
+Em andamento.

@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.flex-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: #F1FAEE;
+    scroll-behavior: smooth;
+}
+
+.menu-superior {
+    background-color: #1D3557;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 45vh;
+    min-width: calc(100vw);
+    border-radius: 0 0 25px 25px;
+}
+
+.menu-superior img {
+    margin: 35px 40px 0px 40px;
+    max-width: 300px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.controlArea {
+    margin: 20px 40px 0 40px;
+}
+
+.selectionBoxes {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto;
+    grid-row-gap: 30px;
+    grid-column-gap: 25px;
+    padding: 0;
+    box-sizing: border-box;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.selectionBoxes h1 {
+    font-size: x-large;
+    color: white;
+}
+
+.boxDeparture {
+    max-width: 400px;
+    max-height: fit-content;
+    width: auto;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.boxDestination {
+    max-width: 400px;
+    max-height: fit-content;
+    width: auto;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.contentArea {
+    position: relative;
+    margin: 10px 40px auto 40px;
+}
+
+.mapArea {
+    position: relative;
+}
+
+.gridContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-column-gap: 20px;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.mapa {
+    overflow: hidden;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.contentReturnArea h1 {
+    font-size: x-large;
+    font-weight: bolder;
+    color: #1D3557;
+}
+
+.contentReturnArea h3 {
+    font-size: large;
+    font-weight: light;
+    color: #1F3C6E;
+}
