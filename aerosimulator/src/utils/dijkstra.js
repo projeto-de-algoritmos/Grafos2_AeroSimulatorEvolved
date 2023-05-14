@@ -102,7 +102,7 @@ const dijsktra = (start, end, connectionDistances) => {
 }
 
 
-const main = (departureId, destinationId) => {
+export const main = (departureId, destinationId) => {
     insertOnHeap({ airport: 11, distance: 11 });
     insertOnHeap({ airport: 10, distance: 10 });
     insertOnHeap({ airport: 8, distance: 8 });
@@ -114,5 +114,3 @@ const main = (departureId, destinationId) => {
     dijsktra(departureId, destinationId, connectionDistances);
     console.log(min_heap);
 }
-
-main()
