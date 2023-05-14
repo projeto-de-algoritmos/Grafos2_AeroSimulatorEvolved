@@ -27,7 +27,7 @@ export const generateErrorMessage = (code) => {
         case 1:
             return `O aeroporto de partida deve ser diferente do aeroporto de destino!`
         case 2:
-            return `Você deve escolher algum aeroporto válido!`
+            return `Os aeroportos de partida e destino e a rota desejada devem ser escolhidos!`
         default:
             return `Entrada inválida!`
     }

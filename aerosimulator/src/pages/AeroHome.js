@@ -13,8 +13,10 @@ export const Aero = () => {
     const [destination, setDestination] = React.useState(-1);
     const [outputRoute, setOutputRoute] = useState([]);
     const [outputTitle, setOutputTitle] = React.useState("");
+    const [algorithm, setAlgorithm] = React.useState(-1);
     let departureOpt = getAirports();
     let destinationOpt = getAirports();
+    let algorithmOpt = [ { value: 0, label: "Menos conexões" }, { value: 1, label: "Menor distância" } ]
     let route = [];
 
     const clearOutputs = () => {
@@ -30,24 +32,39 @@ export const Aero = () => {
         setDestination(option.value);
     };
 
+    const handleChangeAlgorithm = (option) => {
+        setAlgorithm(option.value);
+    };
+
     const handleButtonClick = () => {
         clearOutputs();
         
         if(
             departure === destination  ||
             departure <= -1            ||
-            destination <= -1
+            destination <= -1          ||
+            algorithm <= -1
         ) {
             setOutputRoute([])
-            if(departure <= -1 || destination <= -1) 
+            if(departure <= -1 || destination <= -1 || algorithm <= -1) 
                 setOutputTitle(generateErrorMessage(2))
-            else 
+            else
                 setOutputTitle(generateErrorMessage(1))
         } else {
-            route = main(departure, destination);
+            switch (algorithm) {
+                case 0:
+                    route = main(departure, destination);
 
-            setOutputTitle(generateOutputTitle(departure, destination))
-            setOutputRoute(generateOutputText(route))
+                    setOutputTitle(generateOutputTitle(departure, destination));
+                    setOutputRoute(generateOutputText(route));
+                    break;
+                case 1:
+                    setOutputTitle("AQUI VIRÁ O RESULTADO DE DIJKSTRA");
+                    setOutputRoute([]);
+                    break;
+                default:
+                    setOutputTitle(generateErrorMessage(3));
+            }
         }
     }
 
@@ -76,6 +93,16 @@ export const Aero = () => {
                                 placeholder="Destino"
                                 options={destinationOpt}
                                 onChange={handleChangeDestination}
+                            >
+                            </Select>
+                        </div>
+                        <div className='boxAlgorithm'>
+                            <h1>Rota Desejada</h1>
+                            <Select
+                                className='algorithm'
+                                placeholder="Rota Desejada"
+                                options={algorithmOpt}
+                                onChange={handleChangeAlgorithm}
                             >
                             </Select>
                         </div>
