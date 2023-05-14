@@ -44,7 +44,7 @@ code {
 
 .selectionBoxes {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
     grid-row-gap: 30px;
     grid-column-gap: 25px;
@@ -69,6 +69,15 @@ code {
 }
 
 .boxDestination {
+    max-width: 400px;
+    max-height: fit-content;
+    width: auto;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.boxAlgorithm {
     max-width: 400px;
     max-height: fit-content;
     width: auto;
