@@ -79,20 +79,23 @@ const dijsktra = (start, end, connectionDistances) => {
     insertOnHeap({airport: start, distance: 0})
 
     while (min_heap.length > 0) {
-        // Retirar o vértice com menor distância da heap
+
+        // Remove the node with the smallest distance from the heap
         const current = removeFromHeap();
     
-        // Verificar se o vértice atual é o vértice de destino
+        // Check if the current vertex is the destination node
         if (current.airport === end) {
           return distances[end];
         }
     
-        // Percorrer todas as arestas adjacentes ao vértice atual
+        // Check if the current vertex is the destination node
         graph[current.airport].forEach((neighbor) => {
           const distance = distances[current.airport] + neighbor.distance;
+
           if (distance < distances[neighbor.airport]) {
             distances[neighbor.airport] = distance;
-            // Atualizar a distância do vértice de destino na heap
+
+            // Update the distance of the destination node in the heap
             insertOnHeap({ airport: neighbor.airport, distance: distance });
           }
         });
