@@ -1,3 +1,6 @@
+import { airports } from "./airports"
+import { connectionDistances } from "./connectionDistances"
+
 let min_heap = []
 
 function parentNode (i) { return Math.floor((i - 1)/2) }
@@ -61,13 +64,54 @@ const removeFromHeap = () => {
     } else return undefined;
 }
 
-const main = () => {
+
+const dijsktra = (start, end, connectionDistances) => {
+    const distances = {}
+    const visited = {}
+
+    Object.keys(connectionDistances).forEach((node) => {
+        distances[node] = Infinity;
+        visited[node] = false;
+    });
+
+    distances[start] = 0
+
+    insertOnHeap({airport: start, distance: 0})
+
+    while (min_heap.length > 0) {
+        // Retirar o vértice com menor distância da heap
+        const current = removeFromHeap();
+    
+        // Verificar se o vértice atual é o vértice de destino
+        if (current.airport === end) {
+          return distances[end];
+        }
+    
+        // Percorrer todas as arestas adjacentes ao vértice atual
+        graph[current.airport].forEach((neighbor) => {
+          const distance = distances[current.airport] + neighbor.distance;
+          if (distance < distances[neighbor.airport]) {
+            distances[neighbor.airport] = distance;
+            // Atualizar a distância do vértice de destino na heap
+            insertOnHeap({ airport: neighbor.airport, distance: distance });
+          }
+        });
+    }
+
+    return -1;
+}
+
+
+const main = (departureId, destinationId) => {
     insertOnHeap({ airport: 11, distance: 11 });
     insertOnHeap({ airport: 10, distance: 10 });
     insertOnHeap({ airport: 8, distance: 8 });
     insertOnHeap({ airport: 9, distance: 9 });
     console.log(min_heap);
     removeFromHeap();
+    console.log(min_heap);
+
+    dijsktra(departureId, destinationId, connectionDistances);
     console.log(min_heap);
 }
 
