@@ -1,7 +1,8 @@
 import { airports } from './airports';
+import { connectionDistances } from './connectionDistances';
 import { connections } from './connections';
  
-const buildBfsTree = (start, end, graph) => {
+const buildBfsTree = (start, end, graph, graphDistances) => {
     const visited = new Array(Object.keys(graph).length).fill(false);
     const parents = new Array(Object.keys(graph).length).fill(null);
 
@@ -29,10 +30,21 @@ const buildBfsTree = (start, end, graph) => {
         trajectory.push(airports[node].name);
         node = parents[node];
     }
+
+    let distance = 0;
+    let lastNode;
+    node = end;
+    while (parents[node] !== null) {
+        lastNode = node;
+        node = parents[node];
+        graphDistances[node].forEach((connection) => {
+            if (connection.airport === lastNode) distance += connection.distance
+        })
+    }
     
-    return trajectory.reverse();
+    return { distance: distance, trajectory: trajectory.reverse() };
 }
   
 export const main = (departureId, destinationId) => {
-    return buildBfsTree(departureId, destinationId, connections);
+    return buildBfsTree(departureId, destinationId, connections, connectionDistances);
 }
