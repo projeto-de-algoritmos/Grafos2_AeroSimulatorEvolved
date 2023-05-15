@@ -22,6 +22,25 @@ export const generateOutputText = (route) => {
     return message
 }
 
+export const generateOutputTextWithDistance = ({ distance, trajectory }) => {
+    let intermediateRoute = []
+    let message = []
+
+    if(trajectory.length > 2)
+        intermediateRoute = trajectory.slice(1)
+
+    message.push(`· Saia do Aeroporto de ${trajectory[0]} com destino a ${trajectory[1]}`)
+    
+    for(let i = 0; i < (intermediateRoute.length - 1); i++) {
+        message.push(`· Faça conexão no Aeroporto de ${intermediateRoute[i]} com destino a ${intermediateRoute[i+1]}`)
+    }
+    message.push(`· Desembarque no Aeroporto de ${trajectory[trajectory.length-1]}`)
+    
+    message.push(`A distância total da rota é de ${distance} quilômetros!`)
+
+    return message
+}
+
 export const generateErrorMessage = (code) => {
     switch (code) {
         case 1:

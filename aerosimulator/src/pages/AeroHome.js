@@ -6,7 +6,8 @@ import logo from '../assets/logo.png';
 import mapa from '../assets/mapa.svg';
 import { getAirports } from '../utils/airports';
 import { main } from '../utils/bfs';
-import { generateErrorMessage, generateOutputText, generateOutputTitle } from '../utils/messages';
+import { mainDijkstra } from '../utils/dijkstra';
+import { generateErrorMessage, generateOutputText, generateOutputTextWithDistance, generateOutputTitle } from '../utils/messages';
 
 export const Aero = () => {
     const [departure, setDeparture] = React.useState(-1);
@@ -59,8 +60,10 @@ export const Aero = () => {
                     setOutputRoute(generateOutputText(route));
                     break;
                 case 1:
-                    setOutputTitle("AQUI VIRÁ O RESULTADO DE DIJKSTRA");
-                    setOutputRoute([]);
+                    route = mainDijkstra(departure, destination)
+
+                    setOutputTitle(generateOutputTitle(departure, destination));
+                    setOutputRoute(generateOutputTextWithDistance(route));
                     break;
                 default:
                     setOutputTitle(generateErrorMessage(3));
