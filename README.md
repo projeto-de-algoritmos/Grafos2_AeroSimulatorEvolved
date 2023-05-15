@@ -84,7 +84,7 @@ As instruções de uso são bem semelhantes às da [primeira versão da platafor
 
 ## Apresentação
 
-A apresentação do projeto realizada pela dupla pode ser assistida tanto no [YouTube por AQUI](www.youtube.com) quanto pode ser baixada do próprio repositório e assistida [AQUI](www.github.com).
+A apresentação do projeto realizada pela dupla pode ser assistida tanto no [YouTube por AQUI](https://youtu.be/p6oC6vScpKg) quanto pode ser baixada do próprio repositório e assistida [AQUI](media/grafos2_dupla14.mp4).
 
 ## Outros
 
