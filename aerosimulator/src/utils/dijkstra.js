@@ -1,3 +1,6 @@
+import { airports } from "./airports"
+import { connectionDistances } from "./connectionDistances"
+
 let min_heap = []
 
 function parentNode (i) { return Math.floor((i - 1)/2) }
@@ -61,14 +64,57 @@ const removeFromHeap = () => {
     } else return undefined;
 }
 
-const main = () => {
-    insertOnHeap({ airport: 11, distance: 11 });
-    insertOnHeap({ airport: 10, distance: 10 });
-    insertOnHeap({ airport: 8, distance: 8 });
-    insertOnHeap({ airport: 9, distance: 9 });
-    console.log(min_heap);
-    removeFromHeap();
+
+const dijkstraHeap = (graph, startNode, endNode) => {
+    const dist = {};
+    const prev = {};
+  
+    insertOnHeap({ airport: startNode, distance: 0 });
+  
+    Object.keys(graph).forEach(airport => {
+      if (airport === startNode) {
+        dist[airport] = 0;
+      } else {
+        dist[airport] = Infinity;
+      }
+      prev[airport] = null;
+    });
+  
+    while (min_heap.length > 0) {
+      const { airport: currentNode, distance: currentDistance } = removeFromHeap();
+  
+      graph[currentNode].forEach(({ airport: neighborNode, distance: neighborDistance }) => {
+        const newDistance = dist[currentNode] + neighborDistance;
+  
+        if (newDistance < dist[neighborNode]) {
+          dist[neighborNode] = newDistance;
+          prev[neighborNode] = currentNode;
+          insertOnHeap({ airport: neighborNode, distance: newDistance });
+        }
+      });
+    }
+  
+    const path = [];
+    let currentNode = endNode;
+    while (currentNode !== null) {
+      path.unshift(parseInt(currentNode));
+      currentNode = prev[currentNode];
+    }
+  
+    return { distance: dist[endNode], path };
+  };
+  
+  const printPath = (graph, startNode, endNode) => {
+      const { distance, path } = dijkstraHeap(graph, startNode.toString(), endNode.toString());
+      console.log(path)
+      console.log(`Distância total: ${distance}`);
+  };
+
+export const main = (departureId, destinationId) => {
+    printPath(connectionDistances, departureId, destinationId);
     console.log(min_heap);
 }
 
 main()
+
+
