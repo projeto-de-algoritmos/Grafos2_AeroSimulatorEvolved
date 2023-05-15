@@ -65,55 +65,56 @@ const removeFromHeap = () => {
 }
 
 
-const dijsktra = (start, end, connectionDistances) => {
-    const distances = {}
-    const visited = {}
-
-    Object.keys(connectionDistances).forEach((node) => {
-        distances[node] = Infinity;
-        visited[node] = false;
+const dijkstraHeap = (graph, startNode, endNode) => {
+    const dist = {};
+    const prev = {};
+  
+    insertOnHeap({ airport: startNode, distance: 0 });
+  
+    Object.keys(graph).forEach(airport => {
+      if (airport === startNode) {
+        dist[airport] = 0;
+      } else {
+        dist[airport] = Infinity;
+      }
+      prev[airport] = null;
     });
-
-    distances[start] = 0
-
-    insertOnHeap({airport: start, distance: 0})
-
+  
     while (min_heap.length > 0) {
-
-        // Remove the node with the smallest distance from the heap
-        const current = removeFromHeap();
-    
-        // Check if the current vertex is the destination node
-        if (current.airport === end) {
-          return distances[end];
+      const { airport: currentNode, distance: currentDistance } = removeFromHeap();
+  
+      graph[currentNode].forEach(({ airport: neighborNode, distance: neighborDistance }) => {
+        const newDistance = dist[currentNode] + neighborDistance;
+  
+        if (newDistance < dist[neighborNode]) {
+          dist[neighborNode] = newDistance;
+          prev[neighborNode] = currentNode;
+          insertOnHeap({ airport: neighborNode, distance: newDistance });
         }
-    
-        // Check if the current vertex is the destination node
-        graph[current.airport].forEach((neighbor) => {
-          const distance = distances[current.airport] + neighbor.distance;
-
-          if (distance < distances[neighbor.airport]) {
-            distances[neighbor.airport] = distance;
-
-            // Update the distance of the destination node in the heap
-            insertOnHeap({ airport: neighbor.airport, distance: distance });
-          }
-        });
+      });
     }
-
-    return -1;
-}
-
+  
+    const path = [];
+    let currentNode = endNode;
+    while (currentNode !== null) {
+      path.unshift(parseInt(currentNode));
+      currentNode = prev[currentNode];
+    }
+  
+    return { distance: dist[endNode], path };
+  };
+  
+  const printPath = (graph, startNode, endNode) => {
+      const { distance, path } = dijkstraHeap(graph, startNode.toString(), endNode.toString());
+      console.log(path)
+      console.log(`Distância total: ${distance}`);
+  };
 
 export const main = (departureId, destinationId) => {
-    insertOnHeap({ airport: 11, distance: 11 });
-    insertOnHeap({ airport: 10, distance: 10 });
-    insertOnHeap({ airport: 8, distance: 8 });
-    insertOnHeap({ airport: 9, distance: 9 });
-    console.log(min_heap);
-    removeFromHeap();
-    console.log(min_heap);
-
-    dijsktra(departureId, destinationId, connectionDistances);
+    printPath(connectionDistances, departureId, destinationId);
     console.log(min_heap);
 }
+
+main()
+
+
