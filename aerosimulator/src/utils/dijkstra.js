@@ -102,19 +102,19 @@ const dijkstraHeap = (graph, startNode, endNode) => {
     }
   
     return { distance: dist[endNode], path };
-  };
+};
   
-  const printPath = (graph, startNode, endNode) => {
-      const { distance, path } = dijkstraHeap(graph, startNode.toString(), endNode.toString());
-      console.log(path)
-      console.log(`Distância total: ${distance}`);
-  };
+const printPath = (graph, startNode, endNode) => {
+    const { distance, path } = dijkstraHeap(graph, startNode.toString(), endNode.toString());
 
-export const main = (departureId, destinationId) => {
-    printPath(connectionDistances, departureId, destinationId);
-    console.log(min_heap);
+    let trajectory = []
+    path.forEach((airportCode) => {
+        trajectory.push(airports[airportCode].name);
+    })
+
+    return { distance, trajectory }
+};
+
+export const mainDijkstra = (departureId, destinationId) => {
+    return printPath(connectionDistances, departureId, destinationId);
 }
-
-main()
-
-
