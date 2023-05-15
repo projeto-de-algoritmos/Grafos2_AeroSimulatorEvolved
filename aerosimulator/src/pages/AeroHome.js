@@ -7,7 +7,7 @@ import mapa from '../assets/mapa.svg';
 import { getAirports } from '../utils/airports';
 import { main } from '../utils/bfs';
 import { mainDijkstra } from '../utils/dijkstra';
-import { generateErrorMessage, generateOutputText, generateOutputTextWithDistance, generateOutputTitle } from '../utils/messages';
+import { generateErrorMessage, generateOutputTextWithDistance, generateOutputTitle } from '../utils/messages';
 
 export const Aero = () => {
     const [departure, setDeparture] = React.useState(-1);
@@ -52,21 +52,16 @@ export const Aero = () => {
             else
                 setOutputTitle(generateErrorMessage(1))
         } else {
-            switch (algorithm) {
-                case 0:
-                    route = main(departure, destination);
-
-                    setOutputTitle(generateOutputTitle(departure, destination));
-                    setOutputRoute(generateOutputText(route));
-                    break;
-                case 1:
-                    route = mainDijkstra(departure, destination)
-
-                    setOutputTitle(generateOutputTitle(departure, destination));
-                    setOutputRoute(generateOutputTextWithDistance(route));
-                    break;
-                default:
-                    setOutputTitle(generateErrorMessage(3));
+            if (algorithm === 0) {
+                route = main(departure, destination);
+                setOutputTitle(generateOutputTitle(departure, destination));
+                setOutputRoute(generateOutputTextWithDistance(route));
+            } else if (algorithm === 1) {
+                route = mainDijkstra(departure, destination);
+                setOutputTitle(generateOutputTitle(departure, destination));
+                setOutputRoute(generateOutputTextWithDistance(route));
+            } else {
+                setOutputTitle(generateErrorMessage(3));
             }
         }
     }
